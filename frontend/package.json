@@ -15,7 +15,9 @@
     "@mantine/notifications": "^7.15.4",
     "@tabler/icons": "^3.30.0",
     "@tabler/icons-react": "^3.30.0",
+    "@types/fhir": "^0.0.41",
     "dayjs": "^1.11.13",
+    "fhir": "^4.11.1",
     "next": "^15.1.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

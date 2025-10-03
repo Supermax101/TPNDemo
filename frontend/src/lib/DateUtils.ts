@@ -44,4 +44,18 @@ export default class DateUtils {
         const ageInDays = diff / (1000 * 60 * 60 * 24);
         return ageInDays;
     }
+
+    /**
+     * Convert date to YYYY-MM-DD format
+     * @param date Date to convert
+     * @returns String in YYYY-MM-DD format
+     */
+    public static toYYYYMMDDWithDashes(date: Date | string | undefined): string {
+        if (!date) { return ""; }
+        const d = typeof date === 'string' ? new Date(date) : date;
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
 }

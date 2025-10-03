@@ -35,10 +35,6 @@ export default function MockApp() {
         // Set mock client and patient ID
         appContext.setEhrDataClient(mockClient);
         appContext.setPatientId(testPatientId);
-        appContext.setFhirUrl("mock://demo-server");
-        appContext.setAccessToken("");
-        appContext.setPlasmaFhirClient(null);
-        appContext.setFhirClient(null);
         
         // Load basic patient data (like HAPI does)
         const appData = await mockClient.getPatientDetails(testPatientId);

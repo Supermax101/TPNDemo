@@ -1,10 +1,11 @@
 import * as r4 from "fhir/r4";
-import { Resources, DateTimeUtils } from "@plasmahealth/plasma-fhir-client";
 
 export default class PatientUtils {
     // Get patient initials (for avatar)...
     public static getPatientInitials(patient: r4.Patient | null): string {
-        const patientName = (patient) ? Resources.r4.Patient.getOfficialName(patient) : null;
+        if (!patient || !patient.name || patient.name.length === 0) { return "UNK"; }
+        
+        const patientName = patient.name.find(n => n.use === 'official') || patient.name[0];
         if (!patientName) { return "UNK"; }
 
         // Get first name and last name initial...
@@ -18,21 +19,23 @@ export default class PatientUtils {
 
     // Get a patient display name...
     public static getPatientDisplayName(patient: r4.Patient | null): string {
-        const patientName = (patient) ? Resources.r4.Patient.getOfficialName(patient) : null;
+        if (!patient || !patient.name || patient.name.length === 0) { return "Unknown"; }
+        
+        const patientName = patient.name.find(n => n.use === 'official') || patient.name[0];
         if (!patientName) { return "Unknown"; }
 
-        const sPatientName = Resources.r4.HumanName.toString(patientName);
-        return sPatientName;
+        const given = patientName.given?.join(' ') || '';
+        const family = patientName.family || '';
+        return `${given} ${family}`.trim() || "Unknown";
     }
 
     // Get a patient age...
     public static getPatientAgeDisplay(patient: r4.Patient | null): string {
-        if (!patient) { return "Unknown"; }
+        if (!patient || !patient.birthDate) { return "Unknown"; }
 
-        const dob = Resources.r4.Patient.getBirthDate(patient);
-        if (!dob) { return "Unknown"; }
-
-        const age = DateTimeUtils.getAgeFromDOB(dob);
+        const dob = new Date(patient.birthDate);
+        const today = new Date();
+        const age = today.getFullYear() - dob.getFullYear();
         return age.toString() + " years";
     }
 }

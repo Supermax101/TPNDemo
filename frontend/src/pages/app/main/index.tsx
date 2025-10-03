@@ -10,11 +10,6 @@ import { Group, Text, Button, Card, Loader, Alert } from "@mantine/core";
 import { IconAlertCircle } from "@tabler/icons-react";
 import EHRDataClientMock from "@/lib/client/EHRDataClientMock";
 
-// Disable static generation for this page since it uses context providers
-export const getServerSideProps = async () => {
-    return { props: {} };
-};
-
 export default function Home() {
     const appContext = useAppContext();
     const { formData: tpnParams, isFormComplete, isPNLipidDoseValid, resetFormData } = useTPNParameters();
@@ -441,7 +436,7 @@ export default function Home() {
                             onRegenerate={() => setCurrentStep(1)}
                             onRecalculate={() => {}}
                             clinicalParameters={getClinicalParameters()}
-                            isMockMode={appContext.fhirUrl?.startsWith("mock://") || false}
+                            isMockMode={true}
                             ehrDataClient={appContext.ehrDataClient}
                         />
                     )}

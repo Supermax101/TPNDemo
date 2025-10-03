@@ -1,14 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  async rewrites() {
-    return [
-      {
-        source: '/tpn/:path*',
-        destination: 'http://localhost:5002/tpn/:path*',
-      },
-    ];
+  output: 'export',
+  images: {
+    unoptimized: true,
   },
+  // Removed rewrites as they don't work with static export
 };
 
 export default nextConfig;

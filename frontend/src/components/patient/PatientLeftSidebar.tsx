@@ -4,7 +4,7 @@ import { Button, Group, Stack } from "@mantine/core";
 import PatientHeader from "./PatientHeader";
 import PatientInformationTable from "./PatientInformationTable";
 import IAppData from "@/lib/app-data/IAppData";
-import { DateTimeUtils } from "@plasmahealth/plasma-fhir-client";
+import DateUtils from "@/lib/DateUtils";
 import { useDisclosure } from "@mantine/hooks";
 import PatientDetailsModal from "../modals/PatientDetailsModal";
 
@@ -56,7 +56,7 @@ export default function PatientLeftSidebar(props: IPatientLeftSidebarProps) {
                     age={appData?.age}
                     therapyDays={appData?.therapyDays}
                     dosingWeight={appData?.dosingWeight}
-                    dob={appData?.birthdate ? DateTimeUtils.toYYYYMMDDWithDashes(appData?.birthdate) : ""}
+                    dob={appData?.birthdate ? DateUtils.toYYYYMMDDWithDashes(appData?.birthdate) : ""}
                     ward={appData?.ward ?? ""}
                     lastUpdateDate={appData?.lastUpdateDate}
                     orderDate={appData?.orderDate}
