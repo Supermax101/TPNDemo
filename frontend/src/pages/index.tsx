@@ -1,7 +1,17 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function Home() {
   const router = useRouter();
+  const [isFlying, setIsFlying] = useState(false);
+
+  const handleRunDemo = () => {
+    setIsFlying(true);
+    // Wait for animation to complete before navigating
+    setTimeout(() => {
+      router.push("/app/mock");
+    }, 1200);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-200 via-blue-300 to-cyan-200 relative overflow-hidden">
@@ -80,24 +90,24 @@ export default function Home() {
       {/* Hero Section - Clean and Minimal */}
       <main className="mx-auto px-12 py-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[75vh] max-w-7xl">
-          <div className="space-y-8 flex flex-col justify-start pl-12">
-            <h2 className="text-5xl lg:text-6xl font-medium text-white leading-tight animate-fade-in-up text-left">
+          <div className="flex flex-col justify-start pl-12">
+            <h2 className="text-4xl lg:text-5xl font-medium text-white leading-tight animate-fade-in-up text-left mb-8">
               Health optimization begins at birth
             </h2>
-            <p className="text-2xl lg:text-3xl text-white text-opacity-95 font-normal leading-relaxed animate-fade-in-up delay-200 text-left">
+            <p className="text-xl lg:text-2xl text-white text-opacity-95 font-normal leading-relaxed animate-fade-in-up delay-200 text-left mb-8">
               At Takeoff41, we leverage advanced AI to improve perinatal care.
             </p>
-            <p className="text-lg lg:text-xl text-white text-opacity-90 font-light leading-relaxed animate-fade-in-up delay-400 text-left">
+            <p className="text-base lg:text-lg text-white text-opacity-90 font-light leading-relaxed animate-fade-in-up delay-400 text-left mb-8">
               We are developing science-backed, data-driven treatments for perinatal care — empowering clinicians and improving outcomes for the most vulnerable population.
             </p>
-            <div className="space-y-4 animate-fade-in-up delay-500 pt-2 text-left">
-              <p className="text-base lg:text-lg text-white text-opacity-85 font-light">
+            <div className="space-y-3 animate-fade-in-up delay-500 pt-6 text-left">
+              <p className="text-sm lg:text-base text-white text-opacity-85 font-light">
                 See Takeoff41's TPN2.0 in action
               </p>
               <div>
                 <button 
-                  onClick={() => router.push("/app/mock")}
-                  className="bg-blue-400 hover:bg-blue-500 text-white font-semibold py-4 px-12 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-lg"
+                  onClick={handleRunDemo}
+                  className="bg-blue-400 hover:bg-blue-500 text-white font-semibold py-3 px-10 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-base"
                 >
                   Run the Demo
                 </button>
@@ -110,7 +120,9 @@ export default function Home() {
             <img
               src="/Group-46.png"
               alt="Flying baby character"
-              className="w-72 h-72 lg:w-[400px] lg:h-[400px] object-contain drop-shadow-2xl animate-float-gentle hover:scale-105 transition-transform duration-500 relative z-20 lg:translate-x-24"
+              className={`w-72 h-72 lg:w-[400px] lg:h-[400px] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500 relative z-20 lg:translate-x-40 ${
+                isFlying ? 'animate-superman-fly' : 'animate-float-gentle'
+              }`}
             />
           </div>
         </div>

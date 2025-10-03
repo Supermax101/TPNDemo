@@ -6,6 +6,7 @@ export default function Document() {
     <Html lang="en">
       <Head title="TakeoffAI TPN2.0 Demo">
         <ColorSchemeScript defaultColorScheme="auto" />
+        <link rel="icon" type="image/png" href="/logo.png" />
       </Head>
       <body>
         <Main />
