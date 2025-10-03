@@ -101,7 +101,7 @@ export default function Home() {
               We are developing science-backed, data-driven treatments for perinatal care — empowering clinicians and improving outcomes for the most vulnerable population.
             </p>
             <div className="space-y-3 animate-fade-in-up delay-500 pt-6 text-left">
-              <p className="text-sm lg:text-base text-white text-opacity-85 font-light">
+              <p className="text-sm lg:text-base text-white text-opacity-85 font-semibold">
                 See Takeoff41's TPN2.0 in action
               </p>
               <div>
