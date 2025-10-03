@@ -91,16 +91,13 @@ export default function Home() {
       <main className="mx-auto px-12 py-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[75vh] max-w-7xl">
           <div className="flex flex-col justify-start pl-12">
-            <h2 className="text-4xl lg:text-5xl font-medium text-white leading-tight animate-fade-in-up text-left mb-8">
-              Health optimization begins at birth
-            </h2>
-            <p className="text-xl lg:text-2xl text-white text-opacity-95 font-normal leading-relaxed animate-fade-in-up delay-200 text-left mb-8">
+            <h2 className="text-3xl lg:text-4xl font-medium text-white leading-tight animate-fade-in-up text-left mb-8">
               At Takeoff41, we leverage advanced AI to improve perinatal care.
-            </p>
-            <p className="text-base lg:text-lg text-white text-opacity-90 font-light leading-relaxed animate-fade-in-up delay-400 text-left mb-8">
+            </h2>
+            <p className="text-base lg:text-lg text-white text-opacity-90 font-light leading-relaxed animate-fade-in-up delay-200 text-left mb-8">
               We are developing science-backed, data-driven treatments for perinatal care — empowering clinicians and improving outcomes for the most vulnerable population.
             </p>
-            <div className="space-y-3 animate-fade-in-up delay-500 pt-6 text-left">
+            <div className="space-y-3 animate-fade-in-up delay-400 pt-6 text-left">
               <p className="text-sm lg:text-base text-white text-opacity-85 font-semibold">
                 See Takeoff41's TPN2.0 in action
               </p>
