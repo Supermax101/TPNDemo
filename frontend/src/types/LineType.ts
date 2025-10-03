@@ -1,0 +1,1 @@
+export type LineType = "central" | "peripheral";

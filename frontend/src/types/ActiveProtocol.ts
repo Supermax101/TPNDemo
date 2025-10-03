@@ -1,0 +1,1 @@
+export type ActiveProtocol = "full" | "3/4" | "2/3";

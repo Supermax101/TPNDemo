@@ -1,0 +1,1 @@
+export type FatEmulsion = "smof" | "intralipid" | "omegaven";

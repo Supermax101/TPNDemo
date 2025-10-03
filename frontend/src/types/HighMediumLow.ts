@@ -1,0 +1,1 @@
+export type HighMediumLow = "high" | "medium" | "low";

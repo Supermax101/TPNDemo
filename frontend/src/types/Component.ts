@@ -1,0 +1,1 @@
+export type Component = "fat-dose" | "aa-dose" | "acetate" | "calcium";

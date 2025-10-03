@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+/* Reset default margins and padding */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #DEDEDE;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+#__next {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Floating animations for clouds */
+  @keyframes float-slow {
+    0%, 100% { transform: translateX(0px) translateY(0px); }
+    25% { transform: translateX(10px) translateY(-5px); }
+    50% { transform: translateX(20px) translateY(0px); }
+    75% { transform: translateX(10px) translateY(5px); }
+  }
+
+  @keyframes float-medium {
+    0%, 100% { transform: translateX(0px) translateY(0px); }
+    33% { transform: translateX(-8px) translateY(-8px); }
+    66% { transform: translateX(-15px) translateY(3px); }
+  }
+
+  @keyframes float-fast {
+    0%, 100% { transform: translateX(0px) translateY(0px); }
+    50% { transform: translateX(-12px) translateY(-10px); }
+  }
+
+  @keyframes float-gentle {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Fade in animations */
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 8s ease-in-out infinite;
+  }
+
+  .animate-float-medium {
+    animation: float-medium 6s ease-in-out infinite;
+  }
+
+  .animate-float-fast {
+    animation: float-fast 4s ease-in-out infinite;
+  }
+
+  .animate-float-gentle {
+    animation: float-gentle 3s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+  }
+
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .delay-500 {
+    animation-delay: 0.5s;
+  }
+
+  .delay-1000 {
+    animation-delay: 1s;
+  }
+
+  .delay-2000 {
+    animation-delay: 2s;
+  }
+}
+
+/* Historical Data Tab - Always show horizontal scrollbar */
+.historical-data-scroll {
+  /* For Webkit browsers (Chrome, Safari, Edge) */
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+.historical-data-scroll::-webkit-scrollbar {
+  height: 12px; /* Height of horizontal scrollbar */
+  background-color: #f1f1f1;
+}
+
+.historical-data-scroll::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 6px;
+}
+
+.historical-data-scroll::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 6px;
+  border: 2px solid #f1f1f1;
+}
+
+.historical-data-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 1024px) {
+  .sidebar-responsive {
+    width: 240px !important;
+    min-width: 240px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar-responsive {
+    width: 200px !important;
+    min-width: 200px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-container-responsive {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+  
+  .sidebar-responsive {
+    width: 100% !important;
+    min-width: auto !important;
+    height: auto !important;
+    max-height: 300px !important;
+    order: -1;
+  }
+  
+  .main-content-responsive {
+    flex: 1 !important;
+    min-height: 60vh !important;
+  }
+}
+
+/* Table responsive improvements */
+.table-container-responsive {
+  overflow-x: auto;
+  width: 100%;
+}
+
+/* Force tighter table layout for lab values */
+.table-container-responsive table[style*="tableLayout: fixed"] {
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+
+@media (max-width: 768px) {
+  .table-container-responsive {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .table-container-responsive table {
+    min-width: 400px;
+  }
+}
+
+@media (max-width: 640px) {
+  .table-container-responsive table {
+    font-size: 12px;
+  }
+  
+  .table-container-responsive th,
+  .table-container-responsive td {
+    padding: 4px !important;
+    white-space: nowrap;
+  }
+  
+  /* Override for lab table to allow tighter columns */
+  .table-container-responsive table[style*="tableLayout"] th,
+  .table-container-responsive table[style*="tableLayout"] td {
+    padding: 2px 6px !important;
+  }
+}
+
+/* Non-Nutritional Lines (NNL) - Joe's card-based layout */
+.nnl-lines-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* No scrolling here - parent container handles it */
+}
+
+.nnl-line-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: rgba(243, 244, 246, 0.3);
+}
+
+.nnl-line-header {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.nnl-line-number {
+  min-width: 35px;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.nnl-dose-section {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nnl-dose-unit {
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.nnl-line-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.nnl-additives-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nnl-additive-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 60px;
+  gap: 8px;
+  align-items: center;
+}
+
+.nnl-additive-select {
+  grid-column: span 1;
+}
+
+.nnl-concentration-section {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  grid-column: span 1;
+  justify-content: center;
+}
+
+.nnl-additive-actions {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  grid-column: span 1;
+}
+
+/* Mobile responsive adjustments for NNL cards */
+@media (max-width: 768px) {
+  .nnl-line-number {
+    min-width: 30px;
+    font-size: 11px;
+  }
+  
+  .nnl-dose-unit {
+    font-size: 11px;
+  }
+  
+  .nnl-additive-row {
+    grid-template-columns: 1fr 1fr 60px;
+    gap: 2px;
+  }
+}
+
+@media (max-width: 640px) {
+  .nnl-additive-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  
+  .nnl-additive-select,
+  .nnl-concentration-section,
+  .nnl-additive-actions {
+    grid-column: span 1;
+    width: 100%;
+  }
+  
+  .nnl-additive-actions {
+    justify-content: flex-end;
+  }
+  
+  .nnl-line-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .nnl-dose-section {
+    width: 100%;
+  }
+}
+
+/* NNL Summary section - Joe's style */
+.nnl-summary-section {
+  margin-top: 8px;
+  padding: 4px 8px;
+  background-color: rgba(243, 244, 246, 0.4);
+  border-bottom: 1px solid #e5e7eb;
+  border-radius: 6px;
+}
+
+.nnl-summary-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.nnl-summary-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 8px; /* 2px vertical, 8px horizontal gap */
+  align-items: start;
+}
